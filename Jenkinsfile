@@ -15,8 +15,11 @@ pipeline {
         }
 
         stage ('Deploy') {
+            sshagent(['tomcat.dev']) {
+    
             steps {
-               sh 'sudo cp StrictHostKeyChecking=no target/*.war /home/ec2-user/tomcat/apache-tomcat-8.5.40/webapps/'
+               sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@13.233.46.164:/home/ec2-user/tomcat/apache-tomcat-8.5.40/webapps/'
+                }
             }
         }
     }
