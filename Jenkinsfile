@@ -5,7 +5,7 @@ pipeline {
         jdk 'JAVA_HOME' 
     }
     stages {
-        stage ('Initialize') {
+        stage ('Build') {
             steps {
                 sh 'mvn clean compile'
                     echo "PATH = ${PATH}"
@@ -14,9 +14,9 @@ pipeline {
             }
         }
 
-        stage ('Build') {
+        stage ('Deploy') {
             steps {
-                echo 'This is a minimal pipeline.'
+                cp target/*.war /home/ec2-user/tomcat/apache-tomcat-8.5.40/webapps
             }
         }
     }
