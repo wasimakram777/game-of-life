@@ -5,7 +5,7 @@ pipeline {
           steps {
              withMaven(maven : 'maven-3.6.1') {
 	        sh 'mvn clean complile'
-	           sh 'pwd; sudo chmod 777 build deploy test; ./build'
+	        
 				
             }
         }
