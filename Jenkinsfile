@@ -16,7 +16,9 @@ pipeline {
 
         stage ('Deploy') {
             steps {
+                sshagent(['tomcat.dev']) {
                sh 'cp StrictHostKeyChecking=no target/*.war /home/ec2-user/tomcat/apache-tomcat-8.5.40/webapps/'
+                }
             }
         }
     }
